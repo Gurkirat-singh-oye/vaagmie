@@ -1,0 +1,17 @@
+
+.bg2 {
+    background: url("../images/1/sackcloth-texture-background-n\ 1.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-width: 100vw;
+    /* width: 100vh; */
+    min-height: 100vh;
+}
+
+/* .root_1 {
+    @media (min-width: 700px) {
+        
+        -webkit-mask: linear-gradient(90deg, rgba(0,0,0,1), rgba(200,200,200, .2) );
+    }
+} */
