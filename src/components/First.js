@@ -13,10 +13,10 @@ function First(params) {
 
   return (
     <div
-    className=" h-screen"
+    className=" h-screen overflow-hidden"
     >
       <div
-        className="flex hover:scale-105 transition duration-300"
+        className="flex"
         style={{
           backgroundImage: `url(${BgImage})`,
           backgroundPosition: "center",

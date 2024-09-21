@@ -1,15 +1,25 @@
+import { useEffect, useState } from "react";
 import BgImg from "../images/2/83891f33a61ecc16ac7acdb88f30ed87.jpeg";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import MobileRest from "./mobileComps/MobileRest";
 
 function Rest(params) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    params?.argObj?.indSlide?.on("change", (e) => setIndex(e.toFixed(0)));
+  }, [params?.argObj?.indSlide]);
+
   return (
     <motion.div>
-      {window?.innerWidth > 640 ? (
+      {window?.innerWidth > 940 ? (
         <motion.div className=" flex w-screen h-screen">
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-black from-2% z-50" /> */}
+
           <div
             className="absolute w-screen h-screen"
             style={{
-              backgroundImage: `url(${BgImg})`,
+              backgroundImage: `url(${params?.argObj?.b_imgSource ? params?.argObj?.b_imgSource : BgImg})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -32,6 +42,7 @@ function Rest(params) {
                 onscreen: {
                   opacity: 0.85,
                   x: 0,
+                  boxShadow: "6px 6px 5px rgba(0, 0, 0, 0.5)",
                   transition: {
                     duration: 1,
                     ease: "easeOut",
@@ -42,9 +53,15 @@ function Rest(params) {
               className="flex flex-col gap-2 justify-center items-center min-h-52 w-[40vw] bg-[#FFE6CE] z-10"
             >
               <div className="flex flex-col gap-2 m-4 cursor-pointer hover:scale-105 transition duration-300">
-                <div className="font-medium text-5xl">
+                <motion.div
+                  initial={{x: -30, opacity: 0 }}
+                  animate={{x: 0, opacity: 1, transition: { duration: 1 } }}
+                  exit={{ opacity: 0, duration: 1300 }}
+                  key={params?.argObj?.stripTitle}
+                  className="font-medium text-5xl"
+                >
                   {params?.argObj?.stripTitle}
-                </div>
+                </motion.div>
                 <div className="font-extralight text-2xl">
                   {params?.argObj?.stripSubtitle}
                 </div>
@@ -61,6 +78,7 @@ function Rest(params) {
                   opacity: 1,
                   y: 0,
                   scale: 1,
+                  boxShadow: "2px 2px 3px rgba(0, 0, 0, 0.4)",
                   transition: {
                     duration: 1,
                     ease: "easeOut",
@@ -75,47 +93,16 @@ function Rest(params) {
               className="flex h-[550px] w-[550px] -mt-28 bg-neutral-800 overflow-hidden z-10"
             >
               <img
-                src={params?.argObj?.imgSource}
+                src={params?.argObj?.f_imgSource}
                 alt="Stock Image"
-                className="block transition-all duration-300 ease-in scale-110 hover:scale-[1.2]"
+                className="block transition-all duration-300 ease-in-out scale-110 hover:scale-[1.2]"
               />
             </motion.div>
+            {/* <div className={`w-56 h-56 bg-gradient-to-t from-current`} ></div> */}
           </motion.div>
         </motion.div>
       ) : (
-        <div className=" flex w-screen h-screen">
-          <div
-            className="absolute w-screen h-screen"
-            style={{
-              backgroundImage: `url(${BgImg})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              width: "100vw",
-            }}
-          >
-            <div className="absolute backdrop-blur-md bg-orange-900 bg-opacity-30 w-screen h-screen"></div>
-          </div>
-          <div className="flex items-center z-10">
-            <div className="flex flex-col w-screen h-[70vh] bg-[#FFE6CE] opacity-85 z-10">
-              <div className="flex flex-col pt-3 text-center hover:scale-105 transition duration-300">
-                <div
-                  className="font-medium"
-                  style={{
-                    fontSize: `${window?.innerWidth < 330 ? "35px" : "45px"}`,
-                  }}
-                >
-                  Corporate Gifting
-                </div>
-                <div className="font-extralight text-2xl">
-                  {" "}
-                  Diary, Pen, Keychain, bags and Cardholders
-                </div>
-              </div>
-              <div className="flex h-full m-4 bg-neutral-800"></div>
-            </div>
-          </div>
-        </div>
+        <MobileRest />
       )}
     </motion.div>
   );
