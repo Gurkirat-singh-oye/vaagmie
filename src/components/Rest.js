@@ -12,7 +12,6 @@ function Rest(params) {
 
   return (
     <motion.div>
-      {window?.innerWidth > 940 ? (
         <motion.div className=" flex w-screen h-screen">
           {/* <div className="absolute inset-0 bg-gradient-to-r from-black from-2% z-50" /> */}
 
@@ -32,6 +31,9 @@ function Rest(params) {
             initial="offscreen"
             whileInView="onscreen"
             className="flex items-center mt-28 z-10"
+            viewport={{
+              margin: "-600px"
+            }}
           >
             <motion.div
               variants={{
@@ -101,9 +103,6 @@ function Rest(params) {
             {/* <div className={`w-56 h-56 bg-gradient-to-t from-current`} ></div> */}
           </motion.div>
         </motion.div>
-      ) : (
-        <MobileRest />
-      )}
     </motion.div>
   );
 }

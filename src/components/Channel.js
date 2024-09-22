@@ -17,26 +17,15 @@ import ElG_FG from "../images/7/fe7cf3f8408ab7d58c8fa13368b8d443.png";
 import ElG_BG from "../images/7/0536d8f6efd303e16750fffb9c9cf97b.jpeg";
 
 import JuteStrip from "../images/1/52b41c09dc65b88ce6b6644b572ba855.png";
-import {
-  useScroll,
-  useTransform,
-  motion,
-  clamp,
-  useInView,
-  useAnimation,
-} from "framer-motion";
+import { useScroll, useTransform, motion, useInView } from "framer-motion";
+import MobileRest from "./mobileComps/MobileRest";
 
 function Channel() {
   const targetRef = useRef(null);
   const [index, setIndex] = useState(0);
 
   const restRef = useRef(null);
-  // const [startRestAnimation, setStartRestAnimation] = useState(false);
   const isInView = useInView(restRef);
-
-  // useEffect(() => {
-  //   setStartRestAnimation(isInView);
-  // }, [isInView])
 
   const slides = [
     {
@@ -97,7 +86,20 @@ function Channel() {
     [0, 0.14],
     ["40px", "12px"]
   );
+  const mvLogoPadding = useTransform(
+    //its also responsible for logo's size
+    scrollYProgress,
+    [0, 0.07],
+    ["20px", "110px"]
+  );
+  const mvLogoOpacity = useTransform(
+    //its also responsible for logo's size
+    scrollYProgress,
+    [0, 0.07],
+    ["100%", "0%"]
+  );
   const indSlide = useTransform(scrollYProgress, [0, 1.8], [0, 9]);
+  const mvf = useTransform(scrollYProgress, [0, 0.146], ["100vh", "0vh"]);
 
   useEffect(() => {
     indSlide?.on("change", (e) => setIndex(e?.toFixed(0)));
@@ -156,10 +158,53 @@ function Channel() {
               </div>
             </div>
           </section>
-          <div className="w-full h-screen"> </div>
         </div>
       ) : (
-        <div className="bg-neutral-900"></div>
+        <div className="w-screen bg-neutral-900">
+          <motion.div
+            style={{
+              paddingRight: mvLogoPadding,
+              paddingLeft: mvLogoPadding,
+            }}
+            className="fixed w-screen flex items-center mx-auto flex-col z-50"
+          >
+            <img src={Logo} />
+            <motion.img
+              style={{
+                opacity: mvLogoOpacity,
+              }}
+              src={LogoName}
+            />
+          </motion.div>
+          <First
+            phoneView={true}
+            heightAnim={mvf}
+            juteStrip={
+              <motion.div
+                style={{
+                  top: juteStripMotion,
+                }}
+                className="fixed z-30 w-[100vw] mt-[88vh] ml-56 "
+              >
+                <img
+                  src={JuteStrip}
+                  alt="jutestrip"
+                  className=" scale-[2.6] rotate-[-57deg] overflow-clip"
+                />
+              </motion.div>
+            }
+          />
+          <MobileRest
+            isInView={isInView}
+            argObj={{
+              stripTitle: slides[index]?.stripTitle,
+              stripSubtitle: slides[index]?.stripSubtitle,
+              f_imgSource: slides[index]?.f_imgSource,
+              b_imgSource: slides[index]?.b_imgSource,
+              indSlide: indSlide,
+            }}
+          />
+        </div>
       )}
     </div>
   );
