@@ -5,6 +5,7 @@ import Logo from "../images/1/Original-Base-transparent 4.svg";
 import LogoName from "../images/1/Original-Base-transparent 5.png";
 
 import CGimg from "../images/2/unsplash_f43Ubfx3ooo.png";
+import BgImg from "../images/2/83891f33a61ecc16ac7acdb88f30ed87.jpeg";
 import EG_FG from "../images/3/b0b8e373291399e7a9b633249816eded.jpeg";
 import EG_BG from "../images/3/Rectangle 4.png";
 import WG_FG from "../images/4/19b9b04d6ecb11309f284c655eb96d2f.jpeg";
@@ -32,7 +33,7 @@ function Channel() {
       stripTitle: "Corporate Gifting",
       stripSubtitle: "Diaries, Pens, Keychains, Bags and Cardholders",
       f_imgSource: CGimg,
-      b_imgSource: null,
+      b_imgSource: BgImg,
     },
     {
       stripTitle: "Events Gifting",
@@ -79,7 +80,7 @@ function Channel() {
   const logoWidth = useTransform(
     scrollYProgress,
     [0, 0.14],
-    ["950px", "250px"]
+    ["50vw", "11vw"]
   );
   const logoPadding = useTransform(
     scrollYProgress,
@@ -93,9 +94,13 @@ function Channel() {
     ["20px", "110px"]
   );
   const mvLogoOpacity = useTransform(
-    //its also responsible for logo's size
     scrollYProgress,
     [0, 0.07],
+    ["100%", "0%"]
+  );
+  const f_imgHeight = useTransform(
+    scrollYProgress,
+    [0, 1],
     ["100%", "0%"]
   );
   const indSlide = useTransform(scrollYProgress, [0, 1.8], [0, 9]);
@@ -147,12 +152,14 @@ function Channel() {
               <div ref={restRef} className="">
                 <Rest
                   isInView={isInView}
+                  arrTWA = {slides}
+                  scrollProgress = {f_imgHeight}
                   argObj={{
                     stripTitle: slides[index]?.stripTitle,
                     stripSubtitle: slides[index]?.stripSubtitle,
                     f_imgSource: slides[index]?.f_imgSource,
                     b_imgSource: slides[index]?.b_imgSource,
-                    indSlide: indSlide,
+                    indSlide: index,
                   }}
                 />
               </div>

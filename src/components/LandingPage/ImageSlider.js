@@ -1,0 +1,89 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+// import city1 from "../assets/city1.png";
+// import city2 from "../assets/city2.png";
+// import city3 from "../assets/city3.png";
+// import planet1 from "../assets/planet1.png";
+// import planet2 from "../assets/planet2.png";
+import img from "../../images/b0cf0f06aefe0340b084c3c076734edd.png";
+import im1 from "../../images/1s80fqveyfr81.jpg";
+import im2 from "../../images/20230803_163808.jpg";
+import im3 from "../../images/647367.jpg";
+import im4 from "../../images/hrzf910qkxgb1.jpg";
+import arrow from "../../images/icons/Arrow Right.svg";
+
+const ImageSlider = (props) => {
+  const [positionIndexes, setPositionIndexes] = useState([0, 1, 2, 3, 4]);
+
+  const handleNext = () => {
+    setPositionIndexes((prevIndexes) => {
+      const updatedIndexes = prevIndexes.map(
+        (prevIndex) => (prevIndex + 1) % 5
+      );
+      return updatedIndexes;
+    });
+  };
+
+  const handleBack = () => {
+    setPositionIndexes((prevIndexes) => {
+      const updatedIndexes = prevIndexes.map(
+        (prevIndex) => (prevIndex + 4) % 5
+      );
+
+      return updatedIndexes;
+    });
+  };
+
+  const images = [img, im1, im2, im3, im4];
+
+  const positions = ["center", "left1", "left", "right", "right1"];
+
+  const imageVariants = {
+    center: { x: "0%", scale: 1, zIndex: 5 },
+    left1: { x: props?.mobile ? "-27%" : "-20%", scale: 0.85, zIndex: 3 },
+    left: { x: props?.mobile ? "-42%" : "-35%", scale: 0.7, zIndex: 2 },
+    right: { x: props?.mobile ? "42%" : "35%", scale: 0.7, zIndex: 1 },
+    right1: { x: props?.mobile ? "27%" : "20%", scale: 0.85, zIndex: 3 },
+  };
+  return (
+    <div className=" my-4 pt-16 sm:pt-0 flex flex-col gap-8">
+      <div>
+        <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] sm:h-[600px] lg:h-[850px] z-[4] ">
+          <div className="w-[50%] h-full sm:h-full bg-gradient-to-r from-[#F5F5FA] via-transparent to-transparent " />
+          <div className="w-[50%] h-full sm:h-full bg-gradient-to-r to-[#F5F5FA] via-transparent from-transparent " />
+        </div>
+        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[65vh]">
+          {images.map((image, index) => (
+            <motion.div
+              key={index}
+              // src={image}
+              alt={image}
+              className="flex justify-center rounded-[18px] sm:shadow-lg shadow-neutral-500 overflow-clip"
+              initial="center"
+              animate={positions[positionIndexes[index]]}
+              variants={imageVariants}
+              transition={{ duration: 0.5 }}
+              style={{
+                width: props?.mobile ? "250px" : "70vw",
+                height: props?.mobile ? "320px" : "600px",
+                position: "absolute",
+              }}
+            >
+              <img className="w-full object-cover" src={image} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <div className=" mt-0 sm:mt-20 lg:mt-0 flex flex-row justify-center gap-32 z-[5] ">
+        <img
+          src={arrow}
+          className="cursor-pointer rotate-180"
+          onClick={handleBack}
+        />
+        <img src={arrow} className="cursor-pointer" onClick={handleNext} />
+      </div>
+    </div>
+  );
+};
+
+export default ImageSlider;
