@@ -410,7 +410,7 @@ function Home(params) {
                 <StoryCats img={each?.img} label={each?.label} />
               ))}
             </div>
-            <div className=" pt-8 sm:pt-32 sm:pb-12">
+            <div className=" pt-8 sm:pb-12">
               {window?.innerWidth < 740 ? (
                 <ImageSlider mobile={true} />
               ) : (
@@ -470,7 +470,7 @@ function Home(params) {
                 or festival, our custom-curated hampers bring joy and elegance
                 to every occasion. Explore our exclusive collections today!
               </div>
-              <div className=" mx-auto lg:mx-0 sm:ml-auto w-[200px] h-[45px] flex items-center justify-center text-xl text-white hover:text-burntsienna font-sans font-medium border border-burntsienna bg-burntsienna hover:bg-neutral-100 transition-all duration-300 rounded-full cursor-pointer z-[5] ">
+              <div className=" max-md:mx-auto md:ml-auto w-[200px] h-[45px] flex items-center justify-center text-xl text-white hover:text-burntsienna font-sans font-medium border border-burntsienna bg-burntsienna hover:bg-neutral-100 transition-all duration-300 rounded-full cursor-pointer z-[5] ">
                 Gift Now
               </div>
               <img
