@@ -40,25 +40,25 @@ const ImageSlider = (props) => {
 
   const imageVariants = {
     center: { x: "0%", scale: 1, zIndex: 5 },
-    left1: { x: props?.mobile ? "-27%" : "-20%", scale: 0.85, zIndex: 3 },
-    left: { x: props?.mobile ? "-42%" : "-35%", scale: 0.7, zIndex: 2 },
-    right: { x: props?.mobile ? "42%" : "35%", scale: 0.7, zIndex: 1 },
-    right1: { x: props?.mobile ? "27%" : "20%", scale: 0.85, zIndex: 3 },
+    left1: { x: props?.mobile ? "-27%" : "-17%", scale: 0.85, zIndex: 3 },
+    left: { x: props?.mobile ? "-42%" : "-30%", scale: 0.7, zIndex: 2 },
+    right: { x: props?.mobile ? "42%" : "30%", scale: 0.7, zIndex: 1 },
+    right1: { x: props?.mobile ? "27%" : "17%", scale: 0.85, zIndex: 3 },
   };
   return (
     <div className=" my-4 pt-16 sm:pt-0 flex flex-col gap-8">
       <div>
-        <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] sm:h-[600px] lg:h-[850px] z-[4] ">
+        <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] sm:h-[600px] z-[4] ">
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r from-[#F5F5FA] via-transparent to-transparent " />
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r to-[#F5F5FA] via-transparent from-transparent " />
         </div>
-        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[65vh]">
+        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[620px]">
           {images.map((image, index) => (
             <motion.div
               key={index}
               // src={image}
               alt={image}
-              className="flex justify-center rounded-[18px] sm:shadow-lg shadow-neutral-500 overflow-clip"
+              className="flex justify-center rounded-[40px] sm:shadow-lg shadow-neutral-500 overflow-clip"
               initial="center"
               animate={positions[positionIndexes[index]]}
               variants={imageVariants}

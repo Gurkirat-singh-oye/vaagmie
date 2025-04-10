@@ -68,7 +68,7 @@ function OPCard(params) {
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
     >
-      <div className=" absolute inset-0 w-full h-full group-hover:bg-neutral-200 group-hover:scale-105 rounded-[35px] transition-all duration-500 -z-10 " />
+      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-[64px] transition-all duration-500 -z-10 " />
       <div className=" w-full h-full rounded-[30px] overflow-hidden ">
         <img src={koiv} className=" w-full h-full object-cover " />
       </div>
@@ -147,7 +147,7 @@ function HomeNav() {
       </div>
 
       <div
-        className={` sm:px-8 lg:px-32 flex flex-row ${`h-[85px]`} justify-between items-center bg-[#F5F5FA] `}
+        className={` sm:px-8 lg:px-16 flex flex-row ${`h-[110px]`} justify-between items-center bg-[#F5F5FA] `}
       >
         <div className="ml-10 text-6xl font-thin cursor-pointer">
           <img className="w-[90px] lg:w-[110px] my-2" src={logo1} />
@@ -156,7 +156,7 @@ function HomeNav() {
           {window?.innerWidth < 1370 ? (
             ""
           ) : (
-            <div className="flex flex-row justify-center items-center px-14 gap-10">
+            <div className=" lg:-mr-16 flex flex-row justify-center items-center px-14 gap-10 text-neutral-600 text-lg ">
               <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
                 Home
               </div>
@@ -374,6 +374,8 @@ function Home(params) {
     },
   ];
 
+  const [revScrollStop, setrevScrollStop] = useState(false);
+
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -381,7 +383,7 @@ function Home(params) {
     if (!el) return;
 
     let animationFrameId;
-    const speed = 1;
+    const speed = revScrollStop ? 0 : 1;
 
     const step = () => {
       el.scrollLeft += speed;
@@ -394,7 +396,7 @@ function Home(params) {
     animationFrameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  }, [revScrollStop]);
 
   return (
     <>
@@ -404,13 +406,13 @@ function Home(params) {
           // window?.innerWidth < 1200 ? <MobileHome /> :
           <div className=" w-screen sm:w-full bg-[#F5F5FA] overflow-hidden">
             <div
-              className={` mt-28 p-4 w-full h-full flex flex-row gap-3 sm:gap-16 justify-center overflow-x-auto no-scrollbar `}
+              className={` mt-36 p-4 w-full h-full flex flex-row gap-3 sm:gap-16 justify-center overflow-x-auto no-scrollbar `}
             >
               {storyCatArr?.map((each, ind) => (
                 <StoryCats img={each?.img} label={each?.label} />
               ))}
             </div>
-            <div className=" pt-8 sm:pb-12">
+            <div className=" md:-mt-4 pt-8 lg:pt-0 sm:pb-12">
               {window?.innerWidth < 740 ? (
                 <ImageSlider mobile={true} />
               ) : (
@@ -453,18 +455,18 @@ function Home(params) {
             )}
 
             <div className="px-4 lg:px-56 relative w-full h-[600px] lg:h-[70vh] flex flex-col ">
-              <div className=" flex flex-col gap-2 text-2xl sm:text-4xl lg:text-6xl text-burntsienna font-bold ">
-                <p className=" text-xl sm:text-[40px] font-light tracking-[0.2em] text-neutral-800 ">
+              <div className=" flex flex-col gap-2 lg:gap-4 text-2xl sm:text-4xl lg:text-6xl text-burntsienna font-bold ">
+                <p className=" text-xl sm:text-[40px] lg:text-[43px] font-[350] tracking-[0.2em] text-neutral-600 ">
                   PERSONALIZED
                 </p>
                 <div className=" flex flex-row gap-2 sm:gap-6 ">
-                  <div className=" tracking-[0.2em] font-thin text-nowrap text-neutral-800 ">
+                  <div className=" tracking-[0.2em] font-thin text-nowrap text-neutral-400 ">
                     GIFT HAMPERS
                   </div>
                   FOR YOUR SPECIAL MOMENTS
                 </div>
               </div>
-              <div className=" px-4 sm:px-0 mt-10 sm:mt-0 sm:ml-auto py-10 w-full sm:w-[40%] text-2xl text-center sm:text-end font-extralight ">
+              <div className=" px-4 sm:px-0 mt-10 sm:mt-0 sm:ml-auto py-10 w-full sm:w-[40%] lg:w-[420px] text-2xl text-center sm:text-end font-thin ">
                 Every special moment deserves a gift as unique as the person
                 receiving it. Whether it’s a wedding, corporate event, birthday,
                 or festival, our custom-curated hampers bring joy and elegance
@@ -475,7 +477,7 @@ function Home(params) {
               </div>
               <img
                 src={giftboxrmbg}
-                className=" mt-6 lg:-mt-10 absolute lg:w-[1400px] "
+                className=" mt-6 lg:-mt-10 absolute md:w-[960px] lg:w-[1000px] xl:w-[1500px] "
               />
             </div>
 
@@ -491,10 +493,12 @@ function Home(params) {
                 <div
                   className=" p-3 w-full flex flex-row gap-4 overflow-x-auto no-scrollbar "
                   ref={scrollRef}
+                  onMouseEnter={() => setrevScrollStop(true)}
+                  onMouseLeave={() => setrevScrollStop(false)}
                 >
                   {reviews?.map((each, ind) => {
                     return (
-                      <div className=" p-8 w-[300px] lg:w-[750px] flex flex-col flex-shrink-0 items-center gap-8 rounded-3xl shadow-md shadow-neutral-500 bg-neutral-100 ">
+                      <div className=" p-8 w-[300px] lg:w-[750px] flex flex-col flex-shrink-0 items-center gap-8 rounded-3xl shadow-md shadow-neutral-300 bg-neutral-100 cursor-pointer ">
                         <div className=" w-full flex flex-row justify-between text-xl ">
                           <div>{each?.rating}</div>
                           <div>Date</div>
