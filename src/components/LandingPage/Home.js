@@ -68,7 +68,7 @@ function OPCard(params) {
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
     >
-      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-[64px] transition-all duration-500 -z-10 " />
+      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-[35px] md:rounded-[64px] transition-all duration-500 -z-10 " />
       <div className=" w-full h-full rounded-[30px] overflow-hidden ">
         <img src={koiv} className=" w-full h-full object-cover " />
       </div>
@@ -147,8 +147,9 @@ function HomeNav() {
       </div>
 
       <div
-        className={` sm:px-8 lg:px-16 flex flex-row ${`h-[110px]`} justify-between items-center bg-[#F5F5FA] `}
+        className={` relative sm:px-8 lg:px-16 flex flex-row h-[80px] lg:h-[110px] justify-between items-center sm:bg-[#F5F5FA] `}
       >
+        <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-20 -z-10 " />
         <div className="ml-10 text-6xl font-thin cursor-pointer">
           <img className="w-[90px] lg:w-[110px] my-2" src={logo1} />
         </div>
@@ -157,22 +158,22 @@ function HomeNav() {
             ""
           ) : (
             <div className=" lg:-mr-16 flex flex-row justify-center items-center px-14 gap-10 text-neutral-600 text-lg ">
-              <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
                 Home
               </div>
-              <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
                 Block-Printed
               </div>
-              <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
                 Gifting Solutions
               </div>
-              <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
                 Customization
               </div>
-              <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
                 About Us
               </div>
-              <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
                 Contact US
               </div>
             </div>
@@ -221,10 +222,11 @@ function HomeNav() {
       </div>
 
       <div
-        className={` ${
+        className={`relative ${
           isMenu ? `h-[410px]` : "h-0"
-        } bg-[#F5F5FA] ease-in-out duration-700 transition-all shadow-[#F5F5FA] shadow-lg overflow-hidden z-30 `}
+        } ease-in-out duration-700 transition-all overflow-hidden z-30 `}
       >
+        <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-20 -z-10 " />
         <div className=" py-4 bottom-0 w-full h-full flex flex-col gap-6 items-center text-4xl text-burntsienna ">
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Home
@@ -255,17 +257,17 @@ function StoryCats(params) {
 
   return (
     <div
-      className=" w-12 sm:w-28 h-18 sm:h-36 flex flex-col gap-4 items-center "
+      className=" w-16 sm:w-28 h-[70px] sm:h-36 flex flex-col gap-2 sm:gap-4 items-center "
       onMouseEnter={() => setIsTooltip(true)}
       onMouseLeave={() => setIsTooltip(false)}
     >
-      <div className=" w-12 sm:w-28 h-12 sm:h-28 flex flex-shrink-0 shadow-neutral-600 shadow-lg hover:shadow-neutral-500 hover:shadow-xl hover:scale-105 rounded-full transition-all duration-300 cursor-pointer bg-neutral-300 overflow-hidden ">
+      <div className=" w-16 sm:w-28 h-16 sm:h-28 flex flex-shrink-0 shadow-neutral-600 shadow-md sm:shadow-lg hover:shadow-neutral-500 hover:shadow-lg sm:hover:shadow-xl hover:scale-105 rounded-full transition-all duration-300 cursor-pointer bg-neutral-300 overflow-hidden ">
         <img src={params?.img} className=" object-cover " />
       </div>
       <div
         className={` ${
           isTooltip ? ` opacity-100 ` : ` opacity-0 `
-        } w-full text-center text-burntsienna font-medium text-nowrap transition-all duration-300 `}
+        } w-full text-center text-burntsienna font-medium text-xs sm:text-base text-nowrap transition-all duration-300 `}
       >
         {params?.label}
       </div>
@@ -406,13 +408,13 @@ function Home(params) {
           // window?.innerWidth < 1200 ? <MobileHome /> :
           <div className=" w-screen sm:w-full bg-[#F5F5FA] overflow-hidden">
             <div
-              className={` mt-36 p-4 w-full h-full flex flex-row gap-3 sm:gap-16 justify-center overflow-x-auto no-scrollbar `}
+              className={` mt-24 sm:mt-36 pl-28 pr-3 py-4 w-full h-full flex flex-row gap-6 sm:gap-16 justify-center overflow-x-auto no-scrollbar `}
             >
               {storyCatArr?.map((each, ind) => (
                 <StoryCats img={each?.img} label={each?.label} />
               ))}
             </div>
-            <div className=" md:-mt-4 pt-8 lg:pt-0 sm:pb-12">
+            <div className=" md:-mt-4 sm:pb-12">
               {window?.innerWidth < 740 ? (
                 <ImageSlider mobile={true} />
               ) : (
@@ -454,19 +456,19 @@ function Home(params) {
               </div>
             )}
 
-            <div className="px-4 lg:px-56 relative w-full h-[600px] lg:h-[70vh] flex flex-col ">
-              <div className=" flex flex-col gap-2 lg:gap-4 text-2xl sm:text-4xl lg:text-6xl text-burntsienna font-bold ">
-                <p className=" text-xl sm:text-[40px] lg:text-[43px] font-[350] tracking-[0.2em] text-neutral-600 ">
+            <div className="px-6 lg:px-56 relative w-full h-[600px] lg:h-[70vh] flex flex-col ">
+              <div className=" flex flex-col lg:gap-4 text-3xl sm:text-4xl lg:text-6xl text-burntsienna font-extrabold leading-7 ">
+                <p className=" text-2xl sm:text-[40px] lg:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
                   PERSONALIZED
                 </p>
-                <div className=" flex flex-row gap-2 sm:gap-6 ">
-                  <div className=" tracking-[0.2em] font-thin text-nowrap text-neutral-400 ">
+                <div className=" flex flex-row text-end sm:text-start sm:gap-6 ">
+                  <div className=" tracking-[0.1em] sm:tracking-[0.2em] font-thin text-nowrap text-neutral-400 ">
                     GIFT HAMPERS
                   </div>
                   FOR YOUR SPECIAL MOMENTS
                 </div>
               </div>
-              <div className=" px-4 sm:px-0 mt-10 sm:mt-0 sm:ml-auto py-10 w-full sm:w-[40%] lg:w-[420px] text-2xl text-center sm:text-end font-thin ">
+              <div className=" px-4 sm:px-0 mt-20 sm:mt-0 sm:ml-auto py-10 w-full sm:w-[40%] lg:w-[420px] text-2xl text-center sm:text-end font-light ">
                 Every special moment deserves a gift as unique as the person
                 receiving it. Whether it’s a wedding, corporate event, birthday,
                 or festival, our custom-curated hampers bring joy and elegance
@@ -477,7 +479,7 @@ function Home(params) {
               </div>
               <img
                 src={giftboxrmbg}
-                className=" mt-6 lg:-mt-10 absolute md:w-[960px] lg:w-[1000px] xl:w-[1500px] "
+                className=" -ml-3 sm:ml-0 mt-5 lg:-mt-10 absolute w-[420px] md:w-[960px] lg:w-[1000px] xl:w-[1500px] "
               />
             </div>
 

@@ -46,7 +46,7 @@ const ImageSlider = (props) => {
     right1: { x: props?.mobile ? "27%" : "17%", scale: 0.85, zIndex: 3 },
   };
   return (
-    <div className=" my-4 pt-16 sm:pt-0 flex flex-col gap-8">
+    <div className=" my-4 flex flex-col gap-8">
       <div>
         <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] sm:h-[600px] z-[4] ">
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r from-[#F5F5FA] via-transparent to-transparent " />
@@ -74,12 +74,17 @@ const ImageSlider = (props) => {
           ))}
         </div>
       </div>
-      <div className=" mt-0 sm:mt-20 lg:mt-0 flex flex-row justify-center gap-32 z-[5] ">
+      <div className=" mt-0 sm:mt-20 lg:mt-0 flex flex-row justify-center gap-3 z-[5] ">
         <img
           src={arrow}
           className="cursor-pointer rotate-180"
           onClick={handleBack}
         />
+        <div className=" py-2 flex flex-row items-center gap-2 " >
+          {
+            positions?.map((each, ind) => <div className={` w-2 h-2 rounded-full ${ positionIndexes[0] == ind ? ` bg-burntsienna ` : ` bg-neutral-400 ` } `} ></div>)
+          }
+        </div>
         <img src={arrow} className="cursor-pointer" onClick={handleNext} />
       </div>
     </div>
