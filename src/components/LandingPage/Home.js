@@ -50,7 +50,7 @@ import koiv from "../../images/koiv.png";
 function OPCFilter(params) {
   return (
     <div
-      className={`" w-[110px] sm:w-[240px] h-[30px] sm:h-[45px] flex items-center justify-center text-xs sm:text-xl border font-sans font-medium border-burntsienna ${
+      className={`" px-[9px] 2xs:w-[110px] sm:w-[240px] h-[30px] sm:h-[45px] flex items-center justify-center text-xs sm:text-xl border font-sans font-medium border-burntsienna ${
         params?.selected ? ` bg-burntsienna text-white ` : ` text-burntsienna `
       } hover:bg-neutral-200 transition-all duration-300 rounded-full cursor-pointer `}
     >
@@ -266,7 +266,7 @@ function StoryCats(params) {
       </div>
       <div
         className={` ${
-          isTooltip ? ` opacity-100 ` : ` opacity-0 `
+          window?.innerWidth < 450 || isTooltip ? ` opacity-100 ` : ` opacity-0 `
         } w-full text-center text-burntsienna font-medium text-xs sm:text-base text-nowrap transition-all duration-300 `}
       >
         {params?.label}
@@ -408,7 +408,7 @@ function Home(params) {
           // window?.innerWidth < 1200 ? <MobileHome /> :
           <div className=" w-screen sm:w-full bg-[#F5F5FA] overflow-hidden">
             <div
-              className={` mt-24 sm:mt-36 pl-28 pr-3 py-4 w-full h-full flex flex-row gap-6 sm:gap-16 justify-center overflow-x-auto no-scrollbar `}
+              className={` mt-24 sm:mt-36 p-4 w-full h-full flex flex-row gap-6 sm:gap-16 overflow-x-auto no-scrollbar `}
             >
               {storyCatArr?.map((each, ind) => (
                 <StoryCats img={each?.img} label={each?.label} />
@@ -423,7 +423,7 @@ function Home(params) {
             </div>
 
             <div
-              className=" my-6 sm:my-16 h-[100px] lg:h-[47vh] flex justify-center items-center text-lg lg:text-7xl font-adamina text-burntsienna "
+              className=" my-6 sm:my-16 h-[100px] lg:h-[47vh] flex justify-center items-center text-center text-base 2xs:text-lg lg:text-7xl font-adamina text-burntsienna "
               style={{
                 backgroundImage: `url(${stcmBg})`,
                 backgroundSize: "cover",
@@ -456,9 +456,9 @@ function Home(params) {
               </div>
             )}
 
-            <div className="px-6 lg:px-56 relative w-full h-[600px] lg:h-[70vh] flex flex-col ">
-              <div className=" flex flex-col lg:gap-4 text-3xl sm:text-4xl lg:text-6xl text-burntsienna font-extrabold leading-7 ">
-                <p className=" text-2xl sm:text-[40px] lg:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
+            <div className=" px-4 2xs:px-6 lg:px-56 relative w-full lg:h-[70vh] flex flex-col ">
+              <div className=" flex flex-col lg:gap-4 text-[22px] 2xs:text-3xl sm:text-4xl lg:text-6xl text-burntsienna font-extrabold leading-5 lg:leading-7 ">
+                <p className=" text-base 2xs:text-2xl sm:text-[40px] lg:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
                   PERSONALIZED
                 </p>
                 <div className=" flex flex-row text-end sm:text-start sm:gap-6 ">
@@ -468,7 +468,7 @@ function Home(params) {
                   FOR YOUR SPECIAL MOMENTS
                 </div>
               </div>
-              <div className=" px-4 sm:px-0 mt-20 sm:mt-0 sm:ml-auto py-10 w-full sm:w-[40%] lg:w-[420px] text-2xl text-center sm:text-end font-light ">
+              <div className=" px-4 sm:px-0 mt-20 sm:mt-0 sm:ml-auto py-10 w-full sm:w-[40%] lg:w-[420px] text-lg 2xs:text-2xl text-center sm:text-end font-extralight 2xs:font-light ">
                 Every special moment deserves a gift as unique as the person
                 receiving it. Whether it’s a wedding, corporate event, birthday,
                 or festival, our custom-curated hampers bring joy and elegance
@@ -485,9 +485,9 @@ function Home(params) {
 
             <div
               id="reviews"
-              className=" p-6 sm:p-12 lg:p-32 w-full flex flex-col gap-8 items-center "
+              className=" my-5 p-6 sm:p-12 lg:p-32 w-full flex flex-col gap-8 items-center "
             >
-              <div className=" text-5xl text-burntsienna ">
+              <div className=" text-2xl 2xs:text-3xl sm:text-5xl text-center text-burntsienna font-semibold font-playfair ">
                 {" "}
                 Customer Reviews{" "}
               </div>
@@ -519,7 +519,7 @@ function Home(params) {
               <div id="footer" className=" mt-8 sm:mt-32 ">
                 <div className=" relative flex flex-col gap-14 justify-center items-center h-[600px] sm:h-[48vh] rounded-t-[34px] ">
                   <div
-                    className=" absolute bottom-0 w-full h-[75vh]  "
+                    className=" absolute bottom-0 w-full h-[90vh] xs::h-[75vh]  "
                     style={{
                       backgroundImage: `url(${footerBG})`,
 
@@ -534,7 +534,7 @@ function Home(params) {
                   />
                   <div className=" w-[85vw] z-[1] ">
                     <div className=" flex flex-col sm:flex-row gap-6 sm:gap-0 sm:justify-between ">
-                      <div className=" flex flex-col gap-4 ">
+                      <div className=" flex flex-col items-center lg:items-start gap-4 ">
                         <img className="w-[100px]" src={logo1} />
                         {/* <img src={logo2} /> */}
                         <div className=" flex flex-row gap-4 ">
@@ -546,7 +546,7 @@ function Home(params) {
                           <img className=" w-14 cursor-pointer" src={xIco} />
                           <img className=" w-14 cursor-pointer" src={linkIco} />
                         </div>
-                        <div className=" flex flex-col gap-3 text-start ">
+                        <div className=" flex flex-col gap-3 text-center lg:text-start ">
                           <p className=" font-semibold ">Address</p>
                           <p>Shastri nagar, Delhi - 110052</p>
                           <p>+919599559867</p>
@@ -600,17 +600,17 @@ function Home(params) {
                           </div>
                         </div>
                       </div>
-                      <div className="flex flex-col flex-grow-0 gap-7">
+                      <div className="flex flex-col flex-grow-0 gap-2 lg:gap-7">
                         <div className=" text-2xl ">Subscribe</div>
                         <div className="  ">
                           <div>
                             <input
-                              className=" w-[250px] h-[3.5rem] px-5 rounded-md border-[1px] border-[#272727] "
+                              className=" w-full lg:w-[250px] h-[3.5rem] px-5 rounded-md border-[1px] border-[#272727] "
                               placeholder="Enter your email"
                             />
                           </div>
                         </div>
-                        <div className="px-7 py-[6px] w-fit flex rounded border-[1px] border-[#272727] text-2xl text-[#272727] font-bold cursor-pointer">
+                        <div className="px-7 py-[6px] w-full lg:w-fit rounded border-[1px] border-[#272727] text-center text-2xl text-[#272727] font-bold cursor-pointer">
                           Subscribe
                         </div>
                         <div className="text-xs font-light">

@@ -12,6 +12,8 @@ import im3 from "../../images/647367.jpg";
 import im4 from "../../images/hrzf910qkxgb1.jpg";
 import arrow from "../../images/icons/Arrow Right.svg";
 
+
+// #TODO: add finger drag thingy for mobile users
 const ImageSlider = (props) => {
   const [positionIndexes, setPositionIndexes] = useState([0, 1, 2, 3, 4]);
 
@@ -46,7 +48,7 @@ const ImageSlider = (props) => {
     right1: { x: props?.mobile ? "27%" : "17%", scale: 0.85, zIndex: 3 },
   };
   return (
-    <div className=" my-4 flex flex-col gap-8">
+    <div className=" my-8 xs:my-4 flex flex-col gap-8">
       <div>
         <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] sm:h-[600px] z-[4] ">
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r from-[#F5F5FA] via-transparent to-transparent " />
@@ -58,14 +60,14 @@ const ImageSlider = (props) => {
               key={index}
               // src={image}
               alt={image}
-              className="flex justify-center rounded-[40px] sm:shadow-lg shadow-neutral-500 overflow-clip"
+              className="flex justify-center rounded-3xl xs:rounded-[40px] sm:shadow-lg shadow-neutral-500 overflow-clip"
               initial="center"
               animate={positions[positionIndexes[index]]}
               variants={imageVariants}
               transition={{ duration: 0.5 }}
               style={{
-                width: props?.mobile ? "250px" : "70vw",
-                height: props?.mobile ? "320px" : "600px",
+                width: window?.innerWidth < 350 ? "200px" : window?.innerWidth < 740 ? "250px" : "70vw",
+                height: window?.innerWidth < 350 ? "280px" : window?.innerWidth < 740 ? "370px" : "600px",
                 position: "absolute",
               }}
             >
