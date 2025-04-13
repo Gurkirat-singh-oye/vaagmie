@@ -52,7 +52,7 @@ function OPCFilter(params) {
     <div
       className={`" px-[9px] 2xs:w-[110px] sm:w-[240px] h-[30px] sm:h-[45px] flex items-center justify-center text-xs sm:text-xl border font-sans font-medium border-burntsienna ${
         params?.selected ? ` bg-burntsienna text-white ` : ` text-burntsienna `
-      } hover:bg-neutral-200 transition-all duration-300 rounded-full cursor-pointer `}
+      } hover:bg-neutral-200 hover:text-burntsienna transition-all duration-300 rounded-full cursor-pointer `}
     >
       {params?.label}
     </div>
@@ -64,24 +64,31 @@ function OPCard(params) {
 
   return (
     <div
-      className=" relative p-[1px] sm:p-4 w-[180px] h-[315px] lg:w-[420px] lg:h-[630px] flex flex-col gap-2 lg:gap-6 justify-between items-center rounded-[30px] group cursor-pointer z-0 "
+      className=" relative p-[1px] sm:p-4 w-[180px] h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 lg:gap-4 2xl:gap-6 justify-between items-center rounded-[30px] group cursor-pointer z-0 "
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
+      onClick={() => {
+        if (window?.innerWidth < 640) {
+          params?.setcardMag && params?.setcardMag(true);
+        }
+      }}
     >
       <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-[35px] md:rounded-[64px] transition-all duration-500 -z-10 " />
       <div className=" w-full h-full rounded-[30px] overflow-hidden ">
         <img src={koiv} className=" w-full h-full object-cover " />
       </div>
-      <div className=" text-center text-xl lg:text-[40px] font-medium ">
+      <div className=" text-center text-xl lg:text-[25px] 2xl:text-[40px] font-medium ">
         White Leather Bag
       </div>
 
       <div
         className={` ${
-          enquiry ? ` h-[140px] sm:h-[200px] opacity-100 ` : ` h-0 opacity-0 `
+          window?.innerWidth > 640 && enquiry
+            ? ` h-[140px] sm:h-[200px] opacity-100 `
+            : ` h-0 opacity-0 `
         } w-full flex flex-col items-center gap-3 lg:gap-6 transition-all duration-300 overflow-hidden `}
       >
-        <div className=" w-3/4 flex flex-row justify-between text-base lg:text-3xl ">
+        <div className=" w-3/4 flex flex-row justify-between text-base lg:text-xl 2xl:text-3xl ">
           <div>Cost</div>
           <div className=" w-[2px] h-full bg-burntsienna " />
           <div>rating</div>
@@ -110,8 +117,8 @@ function ProductCollection(params) {
           );
         })}
       </div>
-      <div className=" my-10 mx-auto w-full lg:w-[75vw] flex flex-row flex-wrap gap-4 lg:gap-12 justify-center ">
-        <OPCard />
+      <div className=" my-10 mx-auto w-full md:w-[85vw] 2xl:w-[75vw] flex flex-row flex-wrap gap-4 md:gap-8 2xl:gap-12 justify-center ">
+        <OPCard cardMag={params?.opcardmag} setcardMag={params?.setopcardmag} />
         <OPCard />
         <OPCard />
         <OPCard />
@@ -130,7 +137,7 @@ function Menu(params) {
       <div>
         <img src={searchIcon} />
       </div>
-      <div onClick={() => params?.setIsMenu(!params?.isMenu)}>
+      <div onClick={() => {params?.setIsMenu(!params?.isMenu); params?.setMenuVisibility(true)}}>
         <img src={menu} />
       </div>
     </div>
@@ -139,49 +146,50 @@ function Menu(params) {
 
 function HomeNav() {
   const [isMenu, setIsMenu] = useState(false);
+  const [menuVisibility, setMenuVisibility] = useState(false);
 
   return (
-    <div className="fixed w-[100vw] z-10">
+    <div className="fixed w-[100vw] z-50">
       <div className="w-full h-6 flex justify-center bg-[#FFEBE5] ">
         Offers slide show
       </div>
 
       <div
-        className={` relative sm:px-8 lg:px-16 flex flex-row h-[80px] lg:h-[110px] justify-between items-center sm:bg-[#F5F5FA] `}
+        className={` relative sm:px-2 2xl:px-16 flex flex-row h-[80px] lg:h-[90px] 2xl:h-[110px] justify-between items-center sm:bg-[#F5F5FA] `}
       >
         <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-20 -z-10 " />
         <div className="ml-10 text-6xl font-thin cursor-pointer">
           <img className="w-[90px] lg:w-[110px] my-2" src={logo1} />
         </div>
         <div className="flex flex-row items-center">
-          {window?.innerWidth < 1370 ? (
+          {window?.innerWidth < 1270 ? (
             ""
           ) : (
-            <div className=" lg:-mr-16 flex flex-row justify-center items-center px-14 gap-10 text-neutral-600 text-lg ">
-              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
+            <div className=" lg:-mr-16 flex flex-row justify-center items-center px-14 gap-6 2xl:gap-10 text-neutral-600 text-base 2xl:text-lg ">
+              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 Home
               </div>
-              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 Block-Printed
               </div>
-              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 Gifting Solutions
               </div>
-              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 Customization
               </div>
-              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 About Us
               </div>
-              <div className="cursor-pointer hover:text-xl transition-all duration-300 ">
+              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 Contact US
               </div>
             </div>
           )}
         </div>
-        <div className="flex flex-row items-center gap-4 lg:gap-12">
+        <div className="flex flex-row items-center gap-4 lg:gap-6 2xl:gap-12">
           <div
-            className="py-2 mx-4 px-4 hidden lg:block text-[#E2523E] text-nowrap text-xl font-bold text-center bg-[#F5F5FA] rounded-full cursor-pointer hover:scale-105 transition-all duration-300"
+            className="py-2 mx-4 px-4 hidden lg:block text-burntsienna text-nowrap text-xl font-bold text-center bg-[#F5F5FA] rounded-full cursor-pointer hover:scale-105 transition-all duration-300"
             style={{
               boxShadow: `-5px -5px 10px rgba(255, 255, 255, 0.50), 
                           5px 5px 10px rgba(170, 170, 204, 0.25), 
@@ -191,8 +199,8 @@ function HomeNav() {
           >
             Download Catalogue
           </div>
-          {window?.innerWidth < 1370 ? (
-            <Menu isMenu={isMenu} setIsMenu={setIsMenu} />
+          {window?.innerWidth < 1270 ? (
+            <Menu isMenu={isMenu} setIsMenu={setIsMenu} setMenuVisibility={setMenuVisibility} />
           ) : (
             <div className="mr-20 flex flex-row gap-4">
               <div className="p-1 cursor-pointer">
@@ -222,12 +230,12 @@ function HomeNav() {
       </div>
 
       <div
-        className={`relative ${
-          isMenu ? `h-[410px]` : "h-0"
-        } ease-in-out duration-700 transition-all overflow-hidden z-30 `}
+        className={`relative ${ isMenu ? ` h-full ` : ` h-0 ` } ${
+          isMenu ? ` w-[100vw] ` : " w-0 "
+        } ml-auto flex flex-col gap-10 ease-in-out duration-700 transition-all overflow-hidden  `}
       >
         <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-20 -z-10 " />
-        <div className=" py-4 bottom-0 w-full h-full flex flex-col gap-6 items-center text-4xl text-burntsienna ">
+        <div className=" py-4 w-full h-full flex flex-col gap-6 items-center text-4xl text-nowrap text-burntsienna ">
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Home
           </div>
@@ -247,6 +255,27 @@ function HomeNav() {
             Contact US
           </div>
         </div>
+        <div className=" m-3 w-full flex flex-row items-center justify-center gap-6 " >
+          <div
+            className=" h-12 flex flex-row flex-grow items-center justify-center text-burntsienna text-xl text-nowrap font-bold text-center bg-[#F5F5FA] rounded-full cursor-pointer hover:scale-105 transition-all duration-300"
+            style={{
+              boxShadow: `-5px -5px 10px rgba(255, 255, 255, 0.50), 
+                          5px 5px 10px rgba(170, 170, 204, 0.25), 
+                          10px 10px 20px rgba(170, 170, 204, 0.50), 
+                          -10px -10px 20px #FFF`,
+            }}
+          >
+            Download Catalogue
+          </div>
+          <div className="p-1 w-16 cursor-pointer">
+            <Link to="/me">
+              <img
+                className="hover:scale-125 active:scale-90 transition-all duration-300 "
+                src={userIcon}
+              />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -257,17 +286,19 @@ function StoryCats(params) {
 
   return (
     <div
-      className=" w-16 sm:w-28 h-[70px] sm:h-36 flex flex-col gap-2 sm:gap-4 items-center "
+      className=" w-16 2xl:w-28 h-[70px] sm:h-20 2xl:h-36 flex flex-col gap-2 2xl:gap-4 items-center "
       onMouseEnter={() => setIsTooltip(true)}
       onMouseLeave={() => setIsTooltip(false)}
     >
-      <div className=" w-16 sm:w-28 h-16 sm:h-28 flex flex-shrink-0 shadow-neutral-600 shadow-md sm:shadow-lg hover:shadow-neutral-500 hover:shadow-lg sm:hover:shadow-xl hover:scale-105 rounded-full transition-all duration-300 cursor-pointer bg-neutral-300 overflow-hidden ">
+      <div className=" w-16 2xl:w-28 h-16 2xl:h-28 flex flex-shrink-0 shadow-neutral-900 shadow-md 2xl:shadow-lg hover:shadow-neutral-700 hover:shadow-lg 2xl:hover:shadow-xl hover:scale-105 rounded-full transition-all duration-300 cursor-pointer bg-neutral-300 overflow-hidden ">
         <img src={params?.img} className=" object-cover " />
       </div>
       <div
         className={` ${
-          window?.innerWidth < 450 || isTooltip ? ` opacity-100 ` : ` opacity-0 `
-        } w-full text-center text-burntsienna font-medium text-xs sm:text-base text-nowrap transition-all duration-300 `}
+          window?.innerWidth < 450 || isTooltip
+            ? ` opacity-100 `
+            : ` opacity-0 `
+        } w-full text-center text-burntsienna font-medium text-xs sm:text-sm 2xl:text-base text-nowrap transition-all duration-300 `}
       >
         {params?.label}
       </div>
@@ -377,6 +408,7 @@ function Home(params) {
   ];
 
   const [revScrollStop, setrevScrollStop] = useState(false);
+  const [mobMg, setmobMag] = useState(false);
 
   const scrollRef = useRef(null);
 
@@ -402,19 +434,28 @@ function Home(params) {
 
   return (
     <>
-      <div className="">
+      {mobMg && (
+        <div
+          className=" fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center z-[15] "
+          onClick={() => setmobMag(false)}
+        >
+          <div className=" absolute w-full h-full backdrop-blur-sm " />
+          <OPCard />
+        </div>
+      )}
+      <div className="  ">
         <HomeNav />
         {
           // window?.innerWidth < 1200 ? <MobileHome /> :
           <div className=" w-screen sm:w-full bg-[#F5F5FA] overflow-hidden">
             <div
-              className={` mt-24 sm:mt-36 p-4 w-full h-full flex flex-row gap-6 sm:gap-16 overflow-x-auto no-scrollbar `}
+              className={` mt-24 sm:mt-28 2xl:mt-36 p-4 w-full h-full flex flex-row sm:justify-center gap-6 sm:gap-11 2xl:gap-16 overflow-x-auto no-scrollbar `}
             >
               {storyCatArr?.map((each, ind) => (
                 <StoryCats img={each?.img} label={each?.label} />
               ))}
             </div>
-            <div className=" md:-mt-4 sm:pb-12">
+            <div className=" md:-mt-4 2xl:pb-12">
               {window?.innerWidth < 740 ? (
                 <ImageSlider mobile={true} />
               ) : (
@@ -423,7 +464,7 @@ function Home(params) {
             </div>
 
             <div
-              className=" my-6 sm:my-16 h-[100px] lg:h-[47vh] flex justify-center items-center text-center text-base 2xs:text-lg lg:text-7xl font-adamina text-burntsienna "
+              className=" my-6 sm:my-16 h-[100px] lg:h-[47vh] flex justify-center items-center text-center text-base 2xs:text-lg lg:text-5xl 2xl:text-7xl font-adamina text-burntsienna bg-fixed "
               style={{
                 backgroundImage: `url(${stcmBg})`,
                 backgroundSize: "cover",
@@ -433,7 +474,7 @@ function Home(params) {
               Select Thoughtfully, Create Memories!
             </div>
 
-            <ProductCollection />
+            <ProductCollection opcardmag={mobMg} setopcardmag={setmobMag} />
 
             {window?.innerWidth > 740 && (
               <div className=" my-28 px-14 h-32 sm:h-[30vh] flex flex-row gap-6 justify-center text-white bg-burntsienna ">
@@ -456,9 +497,9 @@ function Home(params) {
               </div>
             )}
 
-            <div className=" px-4 2xs:px-6 lg:px-56 relative w-full lg:h-[70vh] flex flex-col ">
-              <div className=" flex flex-col lg:gap-4 text-[22px] 2xs:text-3xl sm:text-4xl lg:text-6xl text-burntsienna font-extrabold leading-5 lg:leading-7 ">
-                <p className=" text-base 2xs:text-2xl sm:text-[40px] lg:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
+            <div className=" px-4 2xs:px-6 lg:px-16 2xl:px-56 relative w-full lg:h-[70vh] flex flex-col ">
+              <div className=" flex flex-col lg:gap-4 text-[22px] 2xs:text-3xl sm:text-4xl lg:text-[50px] 2xl:text-6xl text-burntsienna font-extrabold leading-5 lg:leading-[50px] 2xl:leading-7 ">
+                <p className=" text-base 2xs:text-2xl sm:text-[40px] 2xl:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
                   PERSONALIZED
                 </p>
                 <div className=" flex flex-row text-end sm:text-start sm:gap-6 ">
@@ -479,7 +520,7 @@ function Home(params) {
               </div>
               <img
                 src={giftboxrmbg}
-                className=" -ml-3 sm:ml-0 mt-5 lg:-mt-10 absolute w-[420px] md:w-[960px] lg:w-[1000px] xl:w-[1500px] "
+                className=" -ml-3 lg:-ml-8 2xl:ml-0 2xl:-mt-10 absolute w-[420px] md:w-[960px] lg:w-[1000px] xl:w-[1250px] 2xl:w-[1500px] "
               />
             </div>
 
@@ -519,7 +560,7 @@ function Home(params) {
               <div id="footer" className=" mt-8 sm:mt-32 ">
                 <div className=" relative flex flex-col gap-14 justify-center items-center h-[600px] sm:h-[48vh] rounded-t-[34px] ">
                   <div
-                    className=" absolute bottom-0 w-full h-[90vh] xs::h-[75vh]  "
+                    className=" absolute bottom-0 w-full h-[90vh] xs::h-[75vh] bg-fixed "
                     style={{
                       backgroundImage: `url(${footerBG})`,
 
