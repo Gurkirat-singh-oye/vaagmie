@@ -54,7 +54,7 @@ const ImageSlider = (props) => {
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r from-[#F5F5FA] via-transparent to-transparent " />
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r to-[#F5F5FA] via-transparent from-transparent " />
         </div>
-        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[510px] 2xl:h-[620px]">
+        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[450px] 2xl:h-[620px]">
           {images.map((image, index) => (
             <motion.div
               key={index}
@@ -66,8 +66,8 @@ const ImageSlider = (props) => {
               variants={imageVariants}
               transition={{ duration: 0.5 }}
               style={{
-                width: window?.innerWidth < 350 ? "200px" : window?.innerWidth < 740 ? "250px" : "70vw",
-                height: window?.innerWidth < 350 ? "280px" : window?.innerWidth < 740 ? "370px" : window?.innerWidth < 1500 ? " 490px " : "600px",
+                width: window?.innerWidth < 380 ? "200px" : window?.innerWidth < 740 ? "250px" : "70vw",
+                height: window?.innerWidth < 380 ? "280px" : window?.innerWidth < 740 ? "370px" : window?.innerWidth < 1500 ? " 440px " : "600px",
                 position: "absolute",
               }}
             >
@@ -84,7 +84,7 @@ const ImageSlider = (props) => {
         />
         <div className=" py-2 flex flex-row items-center gap-2 " >
           {
-            positions?.map((each, ind) => <div className={` w-2 h-2 rounded-full ${ positionIndexes[0] == ind ? ` bg-burntsienna ` : ` bg-neutral-400 ` } `} ></div>)
+            positions?.map((each, ind) => <div className={` w-2 h-2 rounded-full ${ positionIndexes[0] == ind ? ` bg-burntsienna scale-125 ` : ` bg-neutral-400 ` } transition-all duration-300 `} ></div>)
           }
         </div>
         <img src={arrow} className="cursor-pointer" onClick={handleNext} />

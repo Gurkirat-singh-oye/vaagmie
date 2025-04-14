@@ -64,27 +64,28 @@ function OPCard(params) {
 
   return (
     <div
-      className=" relative p-[1px] sm:p-4 w-[180px] h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 lg:gap-4 2xl:gap-6 justify-between items-center rounded-[30px] group cursor-pointer z-0 "
+      className=" relative p-2 sm:p-4 w-[175px] h-[300px] 2xs:w-[200px] 2xs:h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 lg:gap-4 2xl:gap-6 justify-between items-center rounded-[30px] bg-white sm:bg-transparent group cursor-pointer z-0 "
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
+      ref={params?.mobRef}
       onClick={() => {
         if (window?.innerWidth < 640) {
           params?.setcardMag && params?.setcardMag(true);
         }
       }}
     >
-      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-[35px] md:rounded-[64px] transition-all duration-500 -z-10 " />
-      <div className=" w-full h-full rounded-[30px] overflow-hidden ">
+      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-2xl lg:rounded-[35px] md:rounded-[64px] bg-white sm:bg-transparent transition-all duration-500 -z-10 " />
+      <div className=" w-full h-full rounded-xl lg:rounded-[30px] overflow-hidden ">
         <img src={koiv} className=" w-full h-full object-cover " />
       </div>
       <div className=" text-center text-xl lg:text-[25px] 2xl:text-[40px] font-medium ">
-        White Leather Bag
+        {params?.pName}
       </div>
 
       <div
         className={` ${
-          window?.innerWidth > 640 && enquiry
-            ? ` h-[140px] sm:h-[200px] opacity-100 `
+          window?.innerWidth < 640 || enquiry
+            ? ` h-[110px] sm:h-[200px] opacity-100 `
             : ` h-0 opacity-0 `
         } w-full flex flex-col items-center gap-3 lg:gap-6 transition-all duration-300 overflow-hidden `}
       >
@@ -101,10 +102,55 @@ function OPCard(params) {
 
 function ProductCollection(params) {
   const [selectedOPCF, setselectedOPCF] = useState(0);
+  const [selectedCardInd, setSelectedCardInd] = useState(null);
   const opcfArray = ["All Products", "Latest Products", "Best Seller"];
+  const MagOPCardRef = useRef();
+
+  useEffect(() => {
+    console?.log(params?.opcardmag);
+    if (params?.opcardmag) {
+      window?.addEventListener("mousedown", (e) => {
+        if (MagOPCardRef?.current && !MagOPCardRef.current.contains(e.target)) {
+          params?.setopcardmag(false);
+        }
+      });
+    }
+  }, [params?.opcardmag]);
+
+  const cards = [
+    {
+      productName: "Basket",
+    },
+    {
+      productName: "Jute Bag",
+    },
+    {
+      productName: "Leather Bag",
+    },
+    {
+      productName: "White Leather Bag",
+    },
+    {
+      productName: "Gift Box",
+    },
+    {
+      productName: "Batta",
+    },
+    {
+      productName: "Tasla",
+    },
+  ];
 
   return (
     <div className="">
+      {params?.opcardmag && (
+        <div className=" fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center z-[15] ">
+          <div className=" absolute w-full h-full backdrop-blur-sm " />
+          <div className=" absolute flex flex-row justify-center items-center scale-[1.6] z-[3] ">
+            <OPCard pName={cards[selectedCardInd]?.productName} mobRef={MagOPCardRef} />
+          </div>
+        </div>
+      )}
       <div className="w-full flex justify-center text-center text-2xl sm:text-5xl font-semibold font-playfair text-burntsienna ">
         Our Product Collection
       </div>
@@ -117,15 +163,18 @@ function ProductCollection(params) {
           );
         })}
       </div>
-      <div className=" my-10 mx-auto w-full md:w-[85vw] 2xl:w-[75vw] flex flex-row flex-wrap gap-4 md:gap-8 2xl:gap-12 justify-center ">
-        <OPCard cardMag={params?.opcardmag} setcardMag={params?.setopcardmag} />
-        <OPCard />
-        <OPCard />
-        <OPCard />
-        <OPCard />
-        <OPCard />
-        <OPCard />
-        <OPCard />
+      <div className=" my-10 mx-auto w-full md:w-[85vw] 2xl:w-[75vw] flex flex-row flex-wrap gap-1 2xs:gap-4 md:gap-8 2xl:gap-12 justify-center ">
+        {cards?.map((each, ind) => {
+          return (
+            <div onClick={() => setSelectedCardInd(ind)} >
+              <OPCard
+                pName={each?.productName}
+                cardMag={params?.opcardmag}
+                setcardMag={params?.setopcardmag}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -137,7 +186,12 @@ function Menu(params) {
       <div>
         <img src={searchIcon} />
       </div>
-      <div onClick={() => {params?.setIsMenu(!params?.isMenu); params?.setMenuVisibility(true)}}>
+      <div
+        onClick={() => {
+          params?.setIsMenu(!params?.isMenu);
+          params?.setMenuVisibility(true);
+        }}
+      >
         <img src={menu} />
       </div>
     </div>
@@ -157,8 +211,8 @@ function HomeNav() {
       <div
         className={` relative sm:px-2 2xl:px-16 flex flex-row h-[80px] lg:h-[90px] 2xl:h-[110px] justify-between items-center sm:bg-[#F5F5FA] `}
       >
-        <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-20 -z-10 " />
-        <div className="ml-10 text-6xl font-thin cursor-pointer">
+        <div className=" absolute w-full h-full backdrop-blur-lg bg-[#FFEBE5] bg-opacity-20 -z-10 " />
+        <div className="ml-10 text-6xl font-thin hover:scale-105 transition-all duration-700 delay-200 cursor-pointer">
           <img className="w-[90px] lg:w-[110px] my-2" src={logo1} />
         </div>
         <div className="flex flex-row items-center">
@@ -200,7 +254,11 @@ function HomeNav() {
             Download Catalogue
           </div>
           {window?.innerWidth < 1270 ? (
-            <Menu isMenu={isMenu} setIsMenu={setIsMenu} setMenuVisibility={setMenuVisibility} />
+            <Menu
+              isMenu={isMenu}
+              setIsMenu={setIsMenu}
+              setMenuVisibility={setMenuVisibility}
+            />
           ) : (
             <div className="mr-20 flex flex-row gap-4">
               <div className="p-1 cursor-pointer">
@@ -226,11 +284,10 @@ function HomeNav() {
             </div>
           )}
         </div>
-        {/* <div className="absolute w-full h-full backdrop-blur-md -z-10"></div> */}
       </div>
 
       <div
-        className={`relative ${ isMenu ? ` h-full ` : ` h-0 ` } ${
+        className={`relative ${isMenu ? ` h-full ` : ` h-0 `} ${
           isMenu ? ` w-[100vw] ` : " w-0 "
         } ml-auto flex flex-col gap-10 ease-in-out duration-700 transition-all overflow-hidden  `}
       >
@@ -255,7 +312,7 @@ function HomeNav() {
             Contact US
           </div>
         </div>
-        <div className=" m-3 w-full flex flex-row items-center justify-center gap-6 " >
+        <div className=" m-3 w-full flex flex-row items-center justify-center gap-3 ">
           <div
             className=" h-12 flex flex-row flex-grow items-center justify-center text-burntsienna text-xl text-nowrap font-bold text-center bg-[#F5F5FA] rounded-full cursor-pointer hover:scale-105 transition-all duration-300"
             style={{
@@ -267,7 +324,13 @@ function HomeNav() {
           >
             Download Catalogue
           </div>
-          <div className="p-1 w-16 cursor-pointer">
+          <div className=" w-12 h-12 flex flex-row items-center justify-center cursor-pointer">
+            <img
+              className="hover:scale-125 active:scale-90 transition-all duration-300 "
+              src={cartIcon}
+            />
+          </div>
+          <div className=" w-12 h-12 flex flex-row items-center  cursor-pointer">
             <Link to="/me">
               <img
                 className="hover:scale-125 active:scale-90 transition-all duration-300 "
@@ -410,7 +473,18 @@ function Home(params) {
   const [revScrollStop, setrevScrollStop] = useState(false);
   const [mobMg, setmobMag] = useState(false);
 
-  const scrollRef = useRef(null);
+  const scrollRef = useRef();
+  // const MagOPCardRef = useRef();
+
+  // useEffect(() => {
+  //   if (mobMg) {
+  //     window?.addEventListener("mousedown", (e) => {
+  //       if (MagOPCardRef?.current && !MagOPCardRef.current.contains(e.target)) {
+  //         setmobMag(false);
+  //       }
+  //     });
+  //   }
+  // }, [mobMg]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -434,15 +508,14 @@ function Home(params) {
 
   return (
     <>
-      {mobMg && (
-        <div
-          className=" fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center z-[15] "
-          onClick={() => setmobMag(false)}
-        >
+      {/* {mobMg && (
+        <div className=" fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center z-[15] ">
           <div className=" absolute w-full h-full backdrop-blur-sm " />
-          <OPCard />
+          <div className=" absolute flex flex-row justify-center items-center scale-[1.6] z-[3] ">
+            <OPCard mobRef={MagOPCardRef} />
+          </div>
         </div>
-      )}
+      )} */}
       <div className="  ">
         <HomeNav />
         {
@@ -498,8 +571,8 @@ function Home(params) {
             )}
 
             <div className=" px-4 2xs:px-6 lg:px-16 2xl:px-56 relative w-full lg:h-[70vh] flex flex-col ">
-              <div className=" flex flex-col lg:gap-4 text-[22px] 2xs:text-3xl sm:text-4xl lg:text-[50px] 2xl:text-6xl text-burntsienna font-extrabold leading-5 lg:leading-[50px] 2xl:leading-7 ">
-                <p className=" text-base 2xs:text-2xl sm:text-[40px] 2xl:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
+              <div className=" flex flex-col lg:gap-4 text-[27px] 2xs:text-3xl sm:text-4xl lg:text-[50px] 2xl:text-6xl text-burntsienna font-extrabold leading-5 2xs:leading-6 lg:leading-7 ">
+                <p className=" text-xl 2xs:text-2xl sm:text-[40px] 2xl:text-[43px] font-[350] tracking-[0.1em] sm:tracking-[0.2em] text-neutral-600 ">
                   PERSONALIZED
                 </p>
                 <div className=" flex flex-row text-end sm:text-start sm:gap-6 ">
@@ -520,7 +593,7 @@ function Home(params) {
               </div>
               <img
                 src={giftboxrmbg}
-                className=" -ml-3 lg:-ml-8 2xl:ml-0 2xl:-mt-10 absolute w-[420px] md:w-[960px] lg:w-[1000px] xl:w-[1250px] 2xl:w-[1500px] "
+                className=" -ml-3 lg:-ml-8 2xl:ml-0 mt-3 2xs:mt-4 2xl:-mt-10 absolute w-[420px] md:w-[960px] lg:w-[1000px] xl:w-[1250px] 2xl:w-[1500px] "
               />
             </div>
 
