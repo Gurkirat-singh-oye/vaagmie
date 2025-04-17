@@ -50,11 +50,11 @@ const ImageSlider = (props) => {
   return (
     <div className=" my-8 xs:my-4 flex flex-col gap-8">
       <div>
-        <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] lg:h-[490px] 2xl:h-[600px] z-[4] ">
+        <div className="absolute mt-0 sm:-mt-32 lg:mt-0 flex justify-between w-full h-[40vh] lg:h-[490px] 2xl:h-[540px] z-[4] ">
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r from-[#F5F5FA] via-transparent to-transparent " />
           <div className="w-[50%] h-full sm:h-full bg-gradient-to-r to-[#F5F5FA] via-transparent from-transparent " />
         </div>
-        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[450px] 2xl:h-[620px]">
+        <div className="flex items-center justify-center flex-col h-[40vh] lg:h-[450px] 2xl:h-[540px]">
           {images.map((image, index) => (
             <motion.div
               key={index}
@@ -67,7 +67,7 @@ const ImageSlider = (props) => {
               transition={{ duration: 0.5 }}
               style={{
                 width: window?.innerWidth < 380 ? "200px" : window?.innerWidth < 740 ? "250px" : "70vw",
-                height: window?.innerWidth < 380 ? "280px" : window?.innerWidth < 740 ? "370px" : window?.innerWidth < 1500 ? " 440px " : "600px",
+                height: window?.innerWidth < 380 ? "280px" : window?.innerWidth < 740 ? "370px" : window?.innerWidth < 1500 ? " 440px " : "520px",
                 position: "absolute",
               }}
             >
