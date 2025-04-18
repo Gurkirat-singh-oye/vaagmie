@@ -64,7 +64,7 @@ function OPCard(params) {
 
   return (
     <div
-      className=" relative p-2 sm:p-4 w-[175px] h-[300px] 2xs:w-[200px] 2xs:h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 lg:gap-4 2xl:gap-6 justify-between items-center rounded-[30px] bg-white sm:bg-transparent group cursor-pointer z-0 "
+      className=" relative p-2 sm:p-4 w-[175px] h-[300px] xs:w-[205px] xs:h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 xs:gap-3 lg:gap-4 2xl:gap-6 justify-between items-center md:rounded-[30px] bg-white sm:bg-transparent group cursor-pointer z-0 "
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
       ref={params?.mobRef}
@@ -74,7 +74,7 @@ function OPCard(params) {
         }
       }}
     >
-      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-2xl lg:rounded-[35px] md:rounded-[64px] bg-white sm:bg-transparent transition-all duration-500 -z-10 " />
+      <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-2xl lg:rounded-[35px] 2xl:rounded-[64px] bg-white sm:bg-transparent transition-all duration-500 -z-10 " />
       <div className=" w-full h-full rounded-xl lg:rounded-[30px] overflow-hidden ">
         <img src={koiv} className=" w-full h-full object-cover " />
       </div>
@@ -87,7 +87,7 @@ function OPCard(params) {
           window?.innerWidth < 640 || enquiry
             ? ` h-[110px] sm:h-[200px] opacity-100 `
             : ` h-0 opacity-0 `
-        } w-full flex flex-col items-center gap-3 lg:gap-6 transition-all duration-300 overflow-hidden `}
+        } w-full flex flex-col items-center gap-3 xs:gap-5 lg:gap-6 transition-all duration-300 overflow-hidden `}
       >
         <div className=" w-3/4 flex flex-row justify-between text-base lg:text-xl 2xl:text-3xl ">
           <div>Cost</div>
