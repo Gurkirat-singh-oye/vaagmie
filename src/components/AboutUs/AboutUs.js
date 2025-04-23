@@ -3,6 +3,7 @@ import VagButton from "../VagButton";
 import heroBG from "../../images/aboutus-hero.jpg";
 import ourstoryBG from "../../images/aboutus-ourstory.png";
 import someBG from "../../images/fc1da22e23da5fca239ba14e422c4d81.png";
+import rickyBerwick from "../../images/open-the-box-ricky-berwick.gif"
 
 function AboutUs(params) {
   return (
@@ -11,7 +12,7 @@ function AboutUs(params) {
         id="hero-aboutus"
         className=" lg:p-10 w-full lg:h-[90vh] flex flex-col gap-8 items-center lg:items-end bg-fixed "
         style={{
-          backgroundImage: window?.innerWidth < 640 ? `` : `url(${heroBG})`,
+          backgroundImage: window?.innerWidth < 640 ? `` : `url(${rickyBerwick})`,
           backgroundSize: "cover",
           backgroundPosition: " 0% 20% ",
         }}
