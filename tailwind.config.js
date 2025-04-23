@@ -24,7 +24,7 @@ module.exports = {
       colors: {
         burntsienna: "#AC492F",
         vagred: "#d31b29",
-        champagnepink: "#f1ddd2",
+        champagnepink: "#FFE9E3",
       },
       // that is actual animation
       keyframes: (theme) => ({

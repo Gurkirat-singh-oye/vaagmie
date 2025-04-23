@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 function Menu(params) {
   return (
-    <div className="mr-12 flex flex-row gap-8 ">
+    <div className="mr-5 flex flex-row gap-6 ">
       <div>
         <img src={searchIcon} />
       </div>
@@ -46,11 +46,11 @@ function HomeNav() {
       </div>
 
       <div
-        className={` relative sm:px-2 2xl:px-16 flex flex-row h-[80px] lg:h-[90px] 2xl:h-[110px] justify-between items-center sm:bg-[#F5F5FA] `}
+        className={` relative sm:px-2 2xl:px-16 flex flex-row h-[65px] lg:h-[90px] 2xl:h-[110px] justify-between items-center bg-[#F5F5FA] `}
       >
-        <div className=" absolute w-full h-full backdrop-blur-lg bg-[#FFEBE5] bg-opacity-20 -z-10 " />
-        <div className="ml-10 text-6xl font-thin hover:scale-105 transition-all duration-700 delay-200 cursor-pointer">
-          <img className="w-[90px] lg:w-[110px] my-2" src={logo1} />
+        {/* <div className=" absolute w-full h-full backdrop-blur-lg bg-[#FFEBE5] bg-opacity-20 -z-10 " /> */}
+        <div className=" ml-5 sm:ml-10 font-thin hover:scale-105 transition-all duration-700 delay-200 cursor-pointer">
+          <img className="w-[65px] lg:w-[110px] my-2" src={logo1} />
         </div>
         <div className="flex flex-row items-center">
           {window?.innerWidth < 1270 ? (
@@ -123,12 +123,13 @@ function HomeNav() {
         </div>
       </div>
 
+      { isMenu && <div className=" fixed w-screen h-screen bg-opacity-35 bg-neutral-900 -z-10 " />}
       <div
         className={`relative ${isMenu ? ` h-full ` : ` h-0 `} ${
           isMenu ? ` w-[100vw] ` : " w-0 "
         } ml-auto flex flex-col gap-10 ease-in-out duration-700 transition-all overflow-hidden  `}
       >
-        <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-20 -z-10 " />
+        <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-60 -z-10 " />
         <div className=" py-4 w-full h-full flex flex-col gap-6 items-center text-4xl text-nowrap text-burntsienna ">
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Home
@@ -142,9 +143,9 @@ function HomeNav() {
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Customization
           </div>
-          <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+          <Link to="aboutus" className="cursor-pointer hover:text-lg transition-all duration-300 ">
             About Us
-          </div>
+          </Link>
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Contact US
           </div>

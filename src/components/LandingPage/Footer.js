@@ -13,7 +13,7 @@ function Footer(params) {
     <div id="footer" className=" mt-8 sm:mt-32 ">
       <div className=" relative flex flex-col gap-14 justify-center items-center h-[600px] sm:h-[48vh] rounded-t-[34px] ">
         <div
-          className=" absolute bottom-0 w-full h-[90vh] xs::h-[75vh] bg-fixed "
+          className=" absolute bottom-0 w-full h-[90vh] xs::h-[75vh] bg-fixed -z-10 "
           style={{
             backgroundImage: `url(${footerBG})`,
 

@@ -18,7 +18,7 @@ export const Routes = () => {
   return (
     <Router>
       <HomeNav />
-      <div className=" pt-[104px] lg:pt-[114px] 2xl:h-[134px] " />
+      <div className=" pt-[89px] lg:pt-[114px] 2xl:h-[134px] " />
       <Switch>
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
