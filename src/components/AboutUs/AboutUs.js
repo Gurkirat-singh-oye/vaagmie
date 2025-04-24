@@ -81,7 +81,7 @@ function AboutUs(params) {
           What We Offer{" "}
         </div>
         <div className=" flex flex-wrap lg:flex-row gap-6 lg:gap-16 justify-center ">
-          <div className=" py-8 px-5 w-96 flex flex-col gap-6 text-center font-lato rounded-3xl border-burntsienna border-t-2 border-b-2 bg-[#FFE9E3] leading-7 ">
+          <div className=" py-8 px-5 w-[80vw] lg:w-96 flex flex-col gap-6 text-center font-lato rounded-3xl border-burntsienna border-t-2 border-b-2 bg-[#FFE9E3] leading-7 ">
             <div className=" text-4xl font-semibold text-burntsienna ">
               Luxury Gifting
             </div>
@@ -90,7 +90,7 @@ function AboutUs(params) {
               elegantly packed with personalization and charm.
             </div>
           </div>
-          <div className=" py-8 px-5 w-96 flex flex-col gap-6 text-center font-lato rounded-3xl border-burntsienna border-t-2 border-b-2 bg-[#FFE9E3] leading-7 ">
+          <div className=" py-8 px-5 w-[80vw] lg:w-96 flex flex-col gap-6 text-center font-lato rounded-3xl border-burntsienna border-t-2 border-b-2 bg-[#FFE9E3] leading-7 ">
             <div className=" text-4xl font-semibold text-burntsienna ">
               Home & Decor
             </div>
@@ -99,7 +99,7 @@ function AboutUs(params) {
               elegantly packed with personalization and charm.
             </div>
           </div>
-          <div className=" py-8 px-5 w-96 flex flex-col gap-6 text-center font-lato rounded-3xl border-burntsienna border-t-2 border-b-2 bg-champagnepink leading-7 ">
+          <div className=" py-8 px-5 w-[80vw] lg:w-96 flex flex-col gap-6 text-center font-lato rounded-3xl border-burntsienna border-t-2 border-b-2 bg-champagnepink leading-7 ">
             <div className=" text-4xl font-semibold text-burntsienna ">
               Customization
             </div>
@@ -112,7 +112,7 @@ function AboutUs(params) {
       </div>
 
       <div className=" px-8 py-5 w-full flex flex-col gap-8 lg:gap-16 items-center justify-center ">
-        <div className=" text-5xl lg:text-8xl font-playfair font-semibold text-burntsienna ">
+        <div className=" text-5xl lg:text-8xl font-playfair text-center font-semibold text-burntsienna ">
           Why Choose Us?
         </div>
         <div className=" px-2 flex flex-col gap-6 lg:gap-10 items-center justify-center text-2xl lg:text-5xl font-lato text-center text-neutral-600 ">

@@ -52,7 +52,7 @@ function OPCFilter(params) {
     <div
       className={`" px-[9px] 2xs:w-[110px] sm:w-[240px] h-[30px] sm:h-[45px] flex items-center justify-center text-xs sm:text-xl border font-sans font-medium border-burntsienna ${
         params?.selected ? ` bg-burntsienna text-white ` : ` text-burntsienna `
-      } hover:bg-neutral-200 hover:text-burntsienna transition-all duration-300 rounded-full cursor-pointer `}
+      } lg:hover:bg-neutral-200 lg:hover:text-burntsienna transition-all duration-300 rounded-full cursor-pointer `}
     >
       {params?.label}
     </div>
@@ -64,7 +64,7 @@ function OPCard(params) {
 
   return (
     <div
-      className=" relative p-2 sm:p-4 w-[175px] h-[300px] xs:w-[205px] xs:h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 xs:gap-3 lg:gap-4 2xl:gap-6 justify-between items-center md:rounded-[30px] bg-white sm:bg-transparent group cursor-pointer z-0 "
+      className=" relative p-2 sm:p-4 w-[175px] h-[300px] xs:w-[205px] xs:h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 xs:gap-3 lg:gap-4 2xl:gap-6 justify-between items-center rounded-3xl md:rounded-[30px] bg-white sm:bg-transparent group cursor-pointer z-0 "
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
       ref={params?.mobRef}
@@ -168,7 +168,7 @@ function ProductCollection(params) {
           return (
             <div onClick={() => setSelectedCardInd(ind)} >
               <OPCard
-                pName={each?.productName}
+                pName={each?.productName?.length > 12 ? each?.productName?.slice(0,12) + ".." : each?.productName }
                 cardMag={params?.opcardmag}
                 setcardMag={params?.setopcardmag}
               />

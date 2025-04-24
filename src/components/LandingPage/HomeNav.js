@@ -1,14 +1,11 @@
-
 import searchIcon from "../../images/icons/Search.svg";
 import cartIcon from "../../images/icons/cart.svg";
 import userIcon from "../../images/icons/User.svg";
 import menu from "../../images/icons/menu.svg";
 
-
 import logo1 from "../../images/Vaagmiee-(2) 1.png";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 
 function Menu(params) {
   return (
@@ -32,12 +29,10 @@ function HomeNav() {
   const [isMenu, setIsMenu] = useState(false);
   const [menuVisibility, setMenuVisibility] = useState(false);
 
-
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname])
-
+  }, [pathname]);
 
   return (
     <div className="fixed w-[100vw] z-50">
@@ -57,7 +52,10 @@ function HomeNav() {
             ""
           ) : (
             <div className=" lg:-mr-16 flex flex-row justify-center items-center px-14 gap-6 2xl:gap-10 text-neutral-600 text-base 2xl:text-lg ">
-              <Link to="/" className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
+              <Link
+                to="/"
+                className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
+              >
                 Home
               </Link>
               <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
@@ -69,10 +67,16 @@ function HomeNav() {
               <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
                 Customization
               </div>
-              <Link to="/aboutus" className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
+              <Link
+                to="/aboutus"
+                className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
+              >
                 About Us
               </Link>
-              <Link to="contactus" className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
+              <Link
+                to="contactus"
+                className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
+              >
                 Contact US
               </Link>
             </div>
@@ -123,7 +127,9 @@ function HomeNav() {
         </div>
       </div>
 
-      { isMenu && <div className=" fixed w-screen h-screen bg-opacity-35 bg-neutral-900 -z-10 " />}
+      {isMenu && (
+        <div className=" fixed w-screen h-screen bg-opacity-35 bg-neutral-900 -z-10 " />
+      )}
       <div
         className={`relative ${isMenu ? ` h-full ` : ` h-0 `} ${
           isMenu ? ` w-[100vw] ` : " w-0 "
@@ -131,9 +137,12 @@ function HomeNav() {
       >
         <div className=" absolute w-full h-full backdrop-blur-[8px] bg-[#FFEBE5] bg-opacity-60 -z-10 " />
         <div className=" py-4 w-full h-full flex flex-col gap-6 items-center text-4xl text-nowrap text-burntsienna ">
-          <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+          <Link
+            to="/"
+            className="cursor-pointer hover:text-lg transition-all duration-300 "
+          >
             Home
-          </div>
+          </Link>
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Block-Printed
           </div>
@@ -143,12 +152,15 @@ function HomeNav() {
           <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Customization
           </div>
-          <Link to="aboutus" className="cursor-pointer hover:text-lg transition-all duration-300 ">
+          <Link
+            to="aboutus"
+            className="cursor-pointer hover:text-lg transition-all duration-300 "
+          >
             About Us
           </Link>
-          <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
+          <Link to="/contactus" className="cursor-pointer hover:text-lg transition-all duration-300 ">
             Contact US
-          </div>
+          </Link>
         </div>
         <div className=" m-3 w-full flex flex-row items-center justify-center gap-3 ">
           <div
@@ -181,7 +193,5 @@ function HomeNav() {
     </div>
   );
 }
-
-
 
 export default HomeNav;
