@@ -12,6 +12,7 @@ import HomeNav from "./components/LandingPage/HomeNav";
 import Footer from "./components/LandingPage/Footer";
 import { useEffect, useState } from "react";
 import ContactUs from "./components/ContactUs/ContactUs";
+import ComingSoon from "./components/ComingSoon";
 
 export const Routes = () => {
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,8 @@ export const Routes = () => {
           <div className=" pt-[89px] lg:pt-[114px] 2xl:h-[134px] " />
           <Switch>
             <Route path="/" element={<Home />} />
+            <Route path="/block" element={<ComingSoon title="Block-Printed" />} />
+            <Route path="/custom" element={<ComingSoon title="Customization" />} />
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/me" element={<UserPage />} />

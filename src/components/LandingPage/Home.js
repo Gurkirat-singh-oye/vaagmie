@@ -571,9 +571,14 @@ function Home(params) {
                 or festival, our custom-curated hampers bring joy and elegance
                 to every occasion. Explore our exclusive collections today!
               </div>
-              <div className=" max-md:mx-auto md:ml-auto w-[200px] h-[45px] flex items-center justify-center text-xl text-white hover:text-burntsienna font-sans font-medium border border-burntsienna bg-burntsienna hover:bg-neutral-100 transition-all duration-300 rounded-full cursor-pointer z-[5] ">
+              {/* <div className=" max-md:mx-auto md:ml-auto w-[200px] h-[45px] flex items-center justify-center text-xl text-white hover:text-burntsienna font-sans font-medium border border-burntsienna bg-burntsienna hover:bg-neutral-100 transition-all duration-300 rounded-full cursor-pointer z-[5] ">
                 Gift Now
+              </div> */}
+              <div className=" max-md:mx-auto md:ml-auto z-[5] " >
+
+              <VagButton label="Gift Now" />
               </div>
+
               <img
                 src={giftboxrmbg}
                 className=" -ml-3 lg:-ml-8 2xl:ml-0 mt-3 2xs:mt-4 2xl:-mt-10 absolute w-[420px] md:w-[960px] lg:w-[1000px] xl:w-[1250px] 2xl:w-[1500px] "

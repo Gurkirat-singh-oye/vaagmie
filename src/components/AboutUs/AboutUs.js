@@ -12,7 +12,7 @@ function AboutUs(params) {
         id="hero-aboutus"
         className=" lg:p-10 w-full lg:h-[90vh] flex flex-col gap-8 items-center lg:items-end bg-fixed "
         style={{
-          backgroundImage: window?.innerWidth < 640 ? `` : `url(${rickyBerwick})`,
+          backgroundImage: window?.innerWidth < 640 ? `` : `url(${heroBG})`,
           backgroundSize: "cover",
           backgroundPosition: " 0% 20% ",
         }}

@@ -43,7 +43,6 @@ function HomeNav() {
       <div
         className={` relative sm:px-2 2xl:px-16 flex flex-row h-[65px] lg:h-[90px] 2xl:h-[110px] justify-between items-center bg-[#F5F5FA] `}
       >
-        {/* <div className=" absolute w-full h-full backdrop-blur-lg bg-[#FFEBE5] bg-opacity-20 -z-10 " /> */}
         <div className=" ml-5 sm:ml-10 font-thin hover:scale-105 transition-all duration-700 delay-200 cursor-pointer">
           <img className="w-[65px] lg:w-[110px] my-2" src={logo1} />
         </div>
@@ -58,15 +57,18 @@ function HomeNav() {
               >
                 Home
               </Link>
-              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
+              <Link
+                to="/block"
+                className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
+              >
                 Block-Printed
-              </div>
-              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
-                Gifting Solutions
-              </div>
-              <div className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 ">
+              </Link>
+              <Link
+                to="/custom"
+                className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
+              >
                 Customization
-              </div>
+              </Link>
               <Link
                 to="/aboutus"
                 className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
@@ -74,7 +76,7 @@ function HomeNav() {
                 About Us
               </Link>
               <Link
-                to="contactus"
+                to="/contactus"
                 className="cursor-pointer hover:text-lg 2xl:hover:text-xl transition-all duration-300 "
               >
                 Contact US
@@ -140,25 +142,36 @@ function HomeNav() {
           <Link
             to="/"
             className="cursor-pointer hover:text-lg transition-all duration-300 "
+            onClick={() => setIsMenu(false)}
           >
             Home
           </Link>
-          <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
-            Block-Printed
-          </div>
-          <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
-            Gifting Solutions
-          </div>
-          <div className="cursor-pointer hover:text-lg transition-all duration-300 ">
-            Customization
-          </div>
           <Link
-            to="aboutus"
+            to="/block"
             className="cursor-pointer hover:text-lg transition-all duration-300 "
+            onClick={() => setIsMenu(false)}
+          >
+            Block-Printed
+          </Link>
+          <Link
+            to="/custom"
+            className="cursor-pointer hover:text-lg transition-all duration-300 "
+            onClick={() => setIsMenu(false)}
+          >
+            Customization
+          </Link>
+          <Link
+            to="/aboutus"
+            className="cursor-pointer hover:text-lg transition-all duration-300 "
+            onClick={() => setIsMenu(false)}
           >
             About Us
           </Link>
-          <Link to="/contactus" className="cursor-pointer hover:text-lg transition-all duration-300 ">
+          <Link
+            to="/contactus"
+            className="cursor-pointer hover:text-lg transition-all duration-300 "
+            onClick={() => setIsMenu(false)}
+          >
             Contact US
           </Link>
         </div>
