@@ -3,7 +3,6 @@ import VagButton from "../VagButton";
 import heroBG from "../../images/aboutus-hero.jpg";
 import ourstoryBG from "../../images/aboutus-ourstory.png";
 import someBG from "../../images/fc1da22e23da5fca239ba14e422c4d81.png";
-import rickyBerwick from "../../images/open-the-box-ricky-berwick.gif"
 
 function AboutUs(params) {
   return (

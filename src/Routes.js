@@ -13,6 +13,7 @@ import Footer from "./components/LandingPage/Footer";
 import { useEffect, useState } from "react";
 import ContactUs from "./components/ContactUs/ContactUs";
 import ComingSoon from "./components/ComingSoon";
+import ProductPage from "./components/ProductPage/ProductPage";
 
 export const Routes = () => {
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,7 @@ export const Routes = () => {
             <Route path="/custom" element={<ComingSoon title="Customization" />} />
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/product" element={<ProductPage />} />
             <Route path="/me" element={<UserPage />} />
           </Switch>
           <Footer />

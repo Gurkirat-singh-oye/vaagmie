@@ -45,6 +45,13 @@ import occasionImg from "../../images/storycatimages/ocassion.png";
 import corpoImg from "../../images/storycatimages/corpo.png";
 import VagButton from "../VagButton";
 
+import bluxbloombox from "../../images/products/bluxbloombox.png"
+import coupleglassduo from "../../images/products/coupleglassduo.jpg"
+import ecoworkkit from "../../images/products/ecoworkkit.png"
+import execluxeset from "../../images/products/execluxeset.png"
+import lavendercharmset from "../../images/products/lavendercharmset.png"
+import smartluxebox from "../../images/products/smartluxebox.png"
+
 import koiv from "../../images/koiv.png";
 
 function OPCFilter(params) {
@@ -59,11 +66,16 @@ function OPCFilter(params) {
   );
 }
 
-function OPCard(params) {
+export function OPCard(params) {
   const [enquiry, setEnquiry] = useState(false);
 
   return (
-    <div
+    <Link
+      to="/product"
+      state={{ product: {
+        name: params?.pName,
+        image: params?.pImg
+      } }}
       className=" relative p-2 sm:p-4 w-[175px] h-[300px] xs:w-[205px] xs:h-[315px] lg:w-[280px] lg:h-[420px] 2xl:w-[420px] 2xl:h-[630px] flex flex-col gap-2 xs:gap-3 lg:gap-4 2xl:gap-6 justify-between items-center rounded-3xl md:rounded-[30px] bg-white sm:bg-transparent group cursor-pointer z-0 "
       onMouseEnter={() => setEnquiry(true)}
       onMouseLeave={() => setEnquiry(false)}
@@ -76,10 +88,10 @@ function OPCard(params) {
     >
       <div className=" absolute inset-0 w-full h-full group-hover:shadow-lg group-hover:scale-105 rounded-2xl lg:rounded-[35px] 2xl:rounded-[64px] bg-white sm:bg-transparent transition-all duration-500 -z-10 " />
       <div className=" w-full h-full rounded-xl lg:rounded-[30px] overflow-hidden ">
-        <img src={koiv} className=" w-full h-full object-cover " />
+        <img src={ params?.pImg || koiv} className=" w-full h-full object-cover " />
       </div>
       <div className=" text-center text-xl lg:text-[25px] 2xl:text-[40px] font-medium ">
-        {params?.pName}
+        {params?.pName?.length > 18 ? params?.pName?.slice(0,18) + ".." : params?.pName}
       </div>
 
       <div
@@ -96,7 +108,7 @@ function OPCard(params) {
         </div>{" "}
         <VagButton label={"Enquire Now"} />
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -119,30 +131,35 @@ function ProductCollection(params) {
 
   const cards = [
     {
-      productName: "Basket",
+      productName: "Smart Luxe Box",
+      productImage: smartluxebox
     },
     {
-      productName: "Jute Bag",
+      productName: "Lavender Charm Set",
+      productImage: lavendercharmset
     },
     {
-      productName: "Leather Bag",
+      productName: "Couple Glass Duo",
+      productImage: coupleglassduo
     },
     {
-      productName: "White Leather Bag",
+      productName: "Blush & Bloom",
+      productImage: bluxbloombox
     },
     {
-      productName: "Gift Box",
+      productName: "Eco Work Kit",
+      productImage: ecoworkkit
     },
     {
-      productName: "Batta",
-    },
-    {
-      productName: "Tasla",
+      productName: "Executive Luxe Set",
+      productImage: execluxeset
     },
   ];
 
   return (
     <div className="">
+
+      {/** card magnification (on mobile) */}
       {params?.opcardmag && (
         <div className=" fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center z-[15] ">
           <div className=" absolute w-full h-full backdrop-blur-sm " />
@@ -168,7 +185,8 @@ function ProductCollection(params) {
           return (
             <div onClick={() => setSelectedCardInd(ind)} >
               <OPCard
-                pName={each?.productName?.length > 12 ? each?.productName?.slice(0,12) + ".." : each?.productName }
+                pName={each?.productName}
+                pImg={each?.productImage}
                 cardMag={params?.opcardmag}
                 setcardMag={params?.setopcardmag}
               />
